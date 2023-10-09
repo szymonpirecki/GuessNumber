@@ -10,8 +10,8 @@ public class NumberGuessingMachine {
         int remainingGuesses = ATTEMPTS;
 
         while (true) {
-            int usersGuess = UserComunicator.getGuess();
-            if (GuessChecker.checkIfWin(usersGuess, winningNumber)) {
+            int usersGuess = UserInputHandler.getGuess();
+            if (ResultChecker.checkIfWin(usersGuess, winningNumber)) {
                 UserComunicator.displayWinningMessage();
                 break;
             }
@@ -20,13 +20,8 @@ public class NumberGuessingMachine {
                 UserComunicator.displayLoosingMessage(winningNumber);
                 break;
             }
-            GuessChecker.compareGuessToTarget(usersGuess, winningNumber);
-            if (remainingGuesses == 1) {
-                UserComunicator.displayLastGuessMessage();
-            } else {
-                UserComunicator.displayRemainingGuesses(remainingGuesses);
-            }
-            UserComunicator.displayTryAgainMessage();
+            UserComunicator.displayHint(usersGuess, winningNumber);
+            UserComunicator.displayRemainingGuesses(remainingGuesses);
         }
     }
 }
